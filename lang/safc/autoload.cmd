@@ -1,4 +1,3 @@
-:: Соединение проектов и библиотек
 :Autoload [path]
 
     > safc\bin\%App.name% (

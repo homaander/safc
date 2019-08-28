@@ -12,7 +12,7 @@ set App.path=%~dp0
 title Game
 color F0
 
-:: Safc подключение
+:: Safc
     set Safc.libs=array
     :: set Safc.use=menu
 
@@ -44,7 +44,6 @@ color F0
         echo Vitya: %index%
 
         call :Array.find arr Vitya "{App.print Index:}"
-
 
     pause > nul
 exit /b

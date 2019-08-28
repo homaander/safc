@@ -12,7 +12,6 @@ exit /b
 :Array.add [array][value]
     set %1.array=!%1.array!%2,
     set /a %1.count+=1
-
 exit /b
 
 :Array.set [array][index][value]
@@ -38,7 +37,6 @@ exit /b
 
             set /a Array.loop+=1
         )
-
         set %Array.var%.array=!Array.result!
     )
 exit /b
@@ -47,12 +45,10 @@ exit /b
     setlocal
 
         set    Array.var=%1
-
         set /a Array.index=%2 + 1
         set    Array.out=%~3
 
     endlocal & (
-
         for /f "tokens=%Array.index% delims=," %%i in ("!%Array.var%.array!") do (
             if '%Array.out:~0,1%'=='{' (
                 call :%Array.out:~1,-1% %%i
@@ -60,7 +56,6 @@ exit /b
                 set %Array.out%=%%i
             )
         )
-
     )
 exit /b
 
@@ -86,6 +81,5 @@ exit /b
             set /a Array.count+=1
         )
         set %3=null
-
     )
 exit /b
