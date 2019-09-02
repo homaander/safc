@@ -1,24 +1,28 @@
 :Autoload [path]
 
-    > safc\bin\%App.name% (
+    if "%Safc.libs%"=="" if "%Safc.use%"=="" call safc\debug notice "Нет подключённых библиотек"
+
+    (
         type %App.name%
         echo.
-    )
+        type safc\debug.cmd
+        echo.
+    ) > safc\bin\%App.name% 
 
     for %%i in (%Safc.libs%) do (
         if exist safc\lib\%%i_load.cmd call safc\lib\%%i_load
 
-        >> safc\bin\%App.name% (
+        (
             type safc\lib\%%i.cmd
             echo.
-        )
+        ) >> safc\bin\%App.name%
     )
 
     for %%i in (%Safc.use%) do (
-        >> safc\bin\%App.name% (
+        (
             type %%i.cmd
             echo.
-        )
+        ) >> safc\bin\%App.name%
     )
 
     cd safc\bin

@@ -20,3 +20,7 @@ exit /b
         set /a %%a.line+=1
     )  
 exit /b
+
+:Render.parse
+
+exit /b

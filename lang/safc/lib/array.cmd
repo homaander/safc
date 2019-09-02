@@ -1,12 +1,12 @@
 :: Работа с массивами
 :Array [array][count][empty?]
-    if '%3'=='1' (
+    if "%3" == "1" (
         set %1.array=0 & set %1.count=%2
     ) else (
         set /a %1.count+=%2
     )
 
-    for /l %%i in (1,1,%2) do set %1.array=!%1.array!0,
+    for /l %%i in (1, 1, %2) do set %1.array=!%1.array!0,
 exit /b
 
 :Array.add [array][value]
@@ -29,7 +29,7 @@ exit /b
 
         for %%i in (%Array.serch%) do (
 
-            if '!Array.loop!'=='%Array.index%' (
+            if "!Array.loop!" == "%Array.index%" (
                 set Array.result=!Array.result!%Array.value%,
             ) else (
                 set Array.result=!Array.result!%%i,
@@ -50,7 +50,7 @@ exit /b
 
     endlocal & (
         for /f "tokens=%Array.index% delims=," %%i in ("!%Array.var%.array!") do (
-            if '%Array.out:~0,1%'=='{' (
+            if "%Array.out:~0,1%" == "{" (
                 call :%Array.out:~1,-1% %%i
             ) else (
                 set %Array.out%=%%i
@@ -71,8 +71,8 @@ exit /b
     endlocal & (
         set Array.count=0
         for %%i in (%Array.serch%) do (
-            if '%%i'=='%2' (
-                if '%Array.out:~0,1%'=='{' (
+            if "%%i" == "%2" (
+                if "%Array.out:~0,1%" == "{" (
                     call :%Array.out:~1,-1% !Array.count!
                 ) else (
                     set %Array.out%=!Array.count!
