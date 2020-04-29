@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 setlocal enableExtensions
 setlocal enableDelayedExpansion
@@ -15,18 +15,18 @@ color F0
 :: Safc
 set Safc.libs=render
 
+:: Render
 set Render.path=img\default
-set Render.file=map house
+set Render.file=map
 
 safc\autoload 2> nul
 
 :App
     :: Render
-    echo lol
-exit /b
+    call :Render.start
+    call :Render.print map
 
-:App.print [msg][var]
-    echo --%*--
+    pause > nul
 exit /b
 
 :Debug [level][msg]
@@ -42,7 +42,7 @@ exit /b
     pause > nul
 exit /b
 
-:Img
+:Render.start
     set map0=█████████████████████████
     set map1=█                       █
     set map2=█                       █
@@ -53,34 +53,15 @@ exit /b
     set map7=█                       █
     set map8=█                       █
     set map9=█████████████████████████
-
-    set house0= /\
-    set house1=/__\
-    set house2=|  |
-    set house3=|__|
+    set map=10
 
 exit /b
 
-:Render
-    setlocal
-        for %%a in (%Render.img%) do (
-            set var=%%a
-            >> %App.name% (
-                echo :!var!.print
-                echo.    echo hello world!
-                echo exit /b
-                echo.
-            )
-        )  
+:Render.print [name]
+    set /a Render.i = !%1! - 1
 
-    endlocal
-exit /b
-
-:Render.end
-    pause > nul
-    echo.
-    for %%a in (%Render.begins%) do (
-        set /a %%a.line+=1
-    )  
+    for /l %%i in (0,1,%Render.i%) do (
+        echo !%1%%i!
+    )
 exit /b
 

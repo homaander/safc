@@ -1,3 +1,67 @@
+@echo off
+
+setlocal enableExtensions
+setlocal enableDelayedExpansion
+
+chcp 65001 > nul
+
+set App=%~dpnx0
+set App.name=%~nx0
+set App.path=%~dp0
+
+title Game
+color F0
+
+:: Safc
+    set Safc.libs=array
+    :: set Safc.use=menu
+
+    safc\autoload 2> nul
+
+:App
+    :: Array
+
+        :: call :Array arr 10
+        :: call :Array arr 5 1
+
+        call :Array.add arr Andrew
+        call :Array.add arr Vitya
+        call :Array.add arr Vanya
+
+        :: call :Array.set arr 1 Lol
+        echo array: %arr.array% (%arr.count%)
+
+
+        call :Array.get arr 1 value
+        echo 1: %value%
+
+        call :Array.get arr 1 "{App.print Value:}"
+
+        call :Array.find arr Vitya index
+        echo Vitya: %index%
+
+        call :Array.find arr Vitya "{App.print Index:}"
+
+    pause > nul
+exit /b
+
+:App.print [msg][var]
+    echo --%*--
+exit /b
+
+:Debug [level][msg]
+    cls
+
+    if '%1'=='notice' color F1
+    if '%1'=='warn'   color F6
+    if '%1'=='error'  color FC
+
+    echo Debug:
+    echo.    Message: %2
+
+    pause > nul
+exit /b
+
 :: Работа с массивами
 :: Создание
 :Array [array][count][empty?]
@@ -88,3 +152,4 @@ exit /b
         set %3=null
     )
 exit /b
+

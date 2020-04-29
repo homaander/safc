@@ -10,6 +10,7 @@
     ) > safc\bin\%App.name% 
 
     for %%i in (%Safc.libs%) do (
+        :: Работа с настройками библиотеки (если они есть)
         if exist safc\lib\%%i_load.cmd call safc\lib\%%i_load
 
         (

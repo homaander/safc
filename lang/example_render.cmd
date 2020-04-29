@@ -1,4 +1,4 @@
-@echo on
+@echo off
 
 setlocal enableExtensions
 setlocal enableDelayedExpansion
@@ -15,16 +15,16 @@ color F0
 :: Safc
 set Safc.libs=render
 
+:: Render
 set Render.path=img\default
-set Render.file=map house
+set Render.file=map
 
 safc\autoload 2> nul
 
 :App
     :: Render
-    echo lol
-exit /b
+    call :Render.start
+    call :Render.print map
 
-:App.print [msg][var]
-    echo --%*--
+    pause > nul
 exit /b

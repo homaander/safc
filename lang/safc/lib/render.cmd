@@ -1,26 +1,9 @@
-:Render
-    setlocal
-        for %%a in (%Render.img%) do (
-            set var=%%a
-            >> %App.name% (
-                echo :!var!.print
-                echo.    echo hello world!
-                echo exit /b
-                echo.
-            )
-        )  
+:: Работа с текстовыми изображениями
+:: Вывод на экран
+:Render.print [name]
+    set /a Render.i = !%1! - 1
 
-    endlocal
-exit /b
-
-:Render.end
-    pause > nul
-    echo.
-    for %%a in (%Render.begins%) do (
-        set /a %%a.line+=1
-    )  
-exit /b
-
-:Render.parse
-
+    for /l %%i in (0,1,%Render.i%) do (
+        echo !%1%%i!
+    )
 exit /b
